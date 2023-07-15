@@ -1,7 +1,8 @@
 import React from 'react';
 import BeginGame from '../components/BeginGame';
 
-function HomePage() {
+function HomePage({ wordData }) {
+
     return (
         <div>
             <h2>
@@ -10,7 +11,7 @@ function HomePage() {
             <p>
                 Bress the button below to begin your game!
             </p>
-            <BeginGame/>
+            <BeginGame wordData={wordData} />
         </div>
     );
 }

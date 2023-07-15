@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-#begin_game {
+.button {
   width: 300px;
   height: 120px;
   border-radius: 10px;
@@ -21,8 +21,17 @@ code {
   background-color: yellow;
 }
 
+.button:hover {
+  background-color: #ffd700;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
+}
+
 .text-input {
-  width: 100%;
+  width: 75%;
   padding: 10px 20px;
   margin: 8px 0;
   box-sizing: border-box;
