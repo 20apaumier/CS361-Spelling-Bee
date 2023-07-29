@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import WordInput from '../components/WordInput';
 import PronunciationButton from '../components/PronunciationButton';
 import WordTimer from '../components/WordTimer';
+import SentenceButton from '../components/SentenceButton';
 
-function GamePage({ wordData, updateGameState }) {
+function GamePage({ updateGameState }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const { wordId } = useParams();
 
+    const wordData = location.state.wordData;
     const numericId = Number(wordId);
     const [timeLeft, setTimeLeft] = useState(60);
     const [guessesLeft, setGuessesLeft] = useState(3);
@@ -20,7 +23,7 @@ function GamePage({ wordData, updateGameState }) {
             } else {
                 setTimeLeft(60);
                 setGuessesLeft(3);
-                navigate(`/game/${numericId + 1}`);
+                navigate(`/game/${numericId + 1}`, { state: { wordData }});
             }
         }
     }, [timeLeft, guessesLeft, numericId, navigate, wordData.length, updateGameState, wordData]);
@@ -33,7 +36,7 @@ function GamePage({ wordData, updateGameState }) {
             } else {
                 setTimeLeft(60);
                 setGuessesLeft(3);
-                navigate(`/game/${numericId + 1}`);
+                navigate(`/game/${numericId + 1}`, { state: { wordData }});
             }
         } else {
             setGuessesLeft(prevGuessesLeft => prevGuessesLeft - 1);
@@ -44,7 +47,7 @@ function GamePage({ wordData, updateGameState }) {
                 } else {
                     setTimeLeft(60);
                     setGuessesLeft(3);
-                    navigate(`/game/${numericId + 1}`);
+                    navigate(`/game/${numericId + 1}`, { state: { wordData }});
                 }
             }
         }
@@ -60,6 +63,7 @@ function GamePage({ wordData, updateGameState }) {
         <p>Guesses left: {guessesLeft}</p>
         <p>{data.definition}</p>
         <PronunciationButton word={data.word} />
+        <SentenceButton sentence={data.sentence} />
       </div>
     );
 }
