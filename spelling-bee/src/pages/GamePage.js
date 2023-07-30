@@ -33,7 +33,7 @@ function GamePage({ updateGameState }) {
         if (guess === wordData[numericId].word) {
             setGuessState('');
             setTimeout(() => {
-                updateGameState(wordData[numericId].word, true, 3 - guessesLeft);
+                updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, true, 3 - guessesLeft);;
                 setGuessState('correct');
                 if (numericId >= wordData.length - 1) {
                     navigate(`/results`);
@@ -52,7 +52,7 @@ function GamePage({ updateGameState }) {
             }, 100);
 
             if(guessesLeft === 1) {
-                updateGameState(wordData[numericId].word, false, 3 - guessesLeft);
+                updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, false, 3 - guessesLeft);;
                 if (numericId >= wordData.length - 1) {
                     navigate(`/results`);
                 } else {

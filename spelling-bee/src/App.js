@@ -9,8 +9,8 @@ function App() {
 
   const [gameState, setGameState] = useState([]);
 
-  const updateGameState = (word, correct, guesses) => {
-      setGameState(prevState => [...prevState, {word, correct, guesses}]);
+  const updateGameState = (word, definition, sentence, correct, guesses) => {
+      setGameState(prevState => [...prevState, {word, definition, sentence, correct, guesses}]);
   };
 
   const resetGameState = () => {
