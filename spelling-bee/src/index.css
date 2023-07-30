@@ -113,9 +113,19 @@ code {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
-@keyframes flash {
-  0%, 100% { outline: 2px solid green; }
-  50% { outline: 2px solid transparent; }
+@keyframes correct-guess {
+  0% { 
+    border-color: green; 
+    transform: scale(1); 
+  }
+  50% { 
+    border-color: #fff; 
+    transform: scale(1.1); 
+  }
+  100% { 
+    border-color: green; 
+    transform: scale(1); 
+  }
 }
 
 .text-input.incorrect {
@@ -124,8 +134,8 @@ code {
 }
 
 .text-input.correct {
-  animation: flash 0.5s linear;
-  border-color: green;
+  animation: correct-guess 0.5s 2;
+  border: 2px solid green;
 }
 
 
