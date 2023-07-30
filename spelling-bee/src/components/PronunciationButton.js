@@ -7,7 +7,7 @@ function PronunciationButton({ word }) {
         window.speechSynthesis.speak(msg);
     };
 
-    return <button onClick={playAudio}>Play Pronunciation</button>
+    return <button onClick={playAudio} className="pronunciationButton">Play Pronunciation</button>
 }
 
 export default PronunciationButton;

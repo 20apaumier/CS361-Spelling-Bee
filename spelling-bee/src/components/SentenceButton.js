@@ -7,7 +7,7 @@ function SentenceButton({ sentence }) {
         window.speechSynthesis.speak(msg);
     };
 
-    return <button onClick={playAudio}>Play Sentence</button>
+    return <button onClick={playAudio} className="sentenceButton">Play Sentence</button>
 }
 
 export default SentenceButton;

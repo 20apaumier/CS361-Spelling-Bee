@@ -31,10 +31,101 @@ code {
 }
 
 .text-input {
-  width: 75%;
+  width: 500px;
   padding: 10px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 2px solid yellow;
-  border-radius: 4px;
+  margin: 8px 0; 
+  border: none; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+  outline: none; 
+  font-size: 16px; 
 }
+
+.submit-button {
+  width: 500px;
+  padding: 10px 20px;
+  margin: 8px 0; 
+  border: none; 
+  background-color: #ffd700; 
+  color: #000; 
+  cursor: pointer; 
+  border-radius: 4px; 
+  font-size: 16px; 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); 
+  transition: 0.3s; 
+  outline: none; 
+}
+
+.submit-button:hover {
+  background-color: #000; 
+  color: #ffd700; 
+}
+
+.pronunciationButton, .sentenceButton {
+  background-color: #ffd700;
+  color: #000;
+  border: 2px solid #000;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pronunciationButton:hover, .sentenceButton:hover {
+  background-color: #000;
+  color: #ffd700;
+}
+
+.tooltip {
+  display: none;
+  width: 150px;
+  font-size: 12px;
+  position: absolute;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+#infoButton {
+  transition-delay: 0.5s;
+}
+
+#infoButton:hover + .tooltip {
+  display: inline-block;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes flash {
+  0%, 100% { outline: 2px solid green; }
+  50% { outline: 2px solid transparent; }
+}
+
+.text-input.incorrect {
+  animation: shake 0.5s linear;
+  border-color: red;
+}
+
+.text-input.correct {
+  animation: flash 0.5s linear;
+  border-color: green;
+}
+
+
