@@ -68,6 +68,7 @@ function GamePage({ updateGameState }) {
 
     return (
       <div>
+        <button onClick={() => navigate(`/`)} className="small-button"> Main Menu</button>
         <h1>Word #{numericId + 1}</h1>
         <WordTimer timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
         <WordInput onSubmit={handleGuess} onGuess={handleGuess} guessState={guessState}/>
