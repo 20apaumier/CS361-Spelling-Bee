@@ -1,28 +1,43 @@
-import React, { useState} from 'react';
-import { useNavigate} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GetWord from './GetWord';
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function BeginGame() {
-
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const getMicroserviceRandomInt = async () => {
+    try {
+      const response = await fetch("http://localhost:9700/", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ request: "getRandomInt" })
+      });
+
+      const data = await response.json();
+
+      return data.int;
+
+    } catch (error) {
+      console.error("Error fetching random int:", error);
+      throw error;
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-  
+
     try {
       let wordData = [];
-      
-      // Generate 3 random integers and get corresponding word data
+
+      // Generate 3 random integers from microservice and get corresponding word data
       for (let i = 0; i < 3; i++) {
-        const randomInt = getRandomInt(1000);
+        const randomInt = await getMicroserviceRandomInt();
         const data = await GetWord(randomInt);
-  
+
         const wordObject = {
           word: data['Word'],
           definition: data['Definition'],
@@ -30,9 +45,9 @@ function BeginGame() {
         };
         wordData.push(wordObject);
       }
-  
+
       navigate("/game/0", { state: { wordData }});
-  
+
     } catch (error) {
       console.log(error);
     } finally {
