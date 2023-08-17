@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GetWord from './GetWord';
 
+const RANDOM_INT_URL = "http://localhost:9700/";
+const WORD_COUNT = 3;
+
 function BeginGame() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const getMicroserviceRandomInt = async () => {
     try {
-      const response = await fetch("http://localhost:9700/", {
+      const response = await fetch(RANDOM_INT_URL, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ request: "getRandomInt" })
       });
-
-      const data = await response.json();
-
-      return data.int;
-
+      const { int } = await response.json();
+      return int;
     } catch (error) {
       console.error("Error fetching random int:", error);
       throw error;
@@ -31,25 +31,21 @@ function BeginGame() {
     setIsLoading(true);
 
     try {
-      let wordData = [];
+      const randomIntPromises = Array.from({ length: WORD_COUNT }, getMicroserviceRandomInt);
+      const randomInts = await Promise.all(randomIntPromises);
 
-      // Generate 3 random integers from microservice and get corresponding word data
-      for (let i = 0; i < 3; i++) {
-        const randomInt = await getMicroserviceRandomInt();
-        const data = await GetWord(randomInt);
+      const wordPromises = randomInts.map(GetWord);
+      const words = await Promise.all(wordPromises);
 
-        const wordObject = {
-          word: data['Word'],
-          definition: data['Definition'],
-          sentence: data['Sentence']
-        };
-        wordData.push(wordObject);
-      }
+      const wordData = words.map(({ Word, Definition, Sentence }) => ({
+        word: Word,
+        definition: Definition,
+        sentence: Sentence
+      }));
 
       navigate("/game/0", { state: { wordData }});
-
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     } 
