@@ -21,3 +21,8 @@ Start the application
 ```
 npm start
 ```
+
+## Notes
+Before beginning a game, ensure that my partner's microservice is up and running.
+
+microservice: https://github.com/brismithPDX/CS-361-MicroService
