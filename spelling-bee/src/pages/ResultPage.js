@@ -4,17 +4,17 @@ import '../styles/ResultPage.css'
 
 function ResultPage({ gameState, resetGameState }) {
 
-    console.log(gameState);
-
     const navigate = useNavigate();
     const [showInfoIndex, setShowInfoIndex] = useState(null);
 
+     // Handle the click event to navigate back to the main menu and reset the game.
     const handleSubmit = (event) => {
         event.preventDefault();
         resetGameState();
         navigate(`/`);
     };
 
+    // Handle the click event to show or hide additional word information.
     const handleClick = (index) => {
         if (showInfoIndex === index) {
             setShowInfoIndex(null); 

@@ -3,8 +3,10 @@ import csvFile from '../words.csv';
 
 let cachedData = null;
 
+// Parses the CSV file using the Papa library.
 const parseCSV = () => {
   return new Promise((resolve, reject) => {
+    // Return cached data if it exists.
     if (cachedData) {
       resolve(cachedData);
       return;
@@ -25,6 +27,7 @@ const parseCSV = () => {
   });
 }
 
+// Fetches a word from the CSV data based on the provided index.
 const GetWord = async (index) => {
   try {
     const data = await parseCSV();

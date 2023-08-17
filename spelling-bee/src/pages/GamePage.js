@@ -12,10 +12,12 @@ function GamePage({ updateGameState }) {
 
     const wordData = location.state.wordData;
     const numericId = Number(wordId);
+
     const [timeLeft, setTimeLeft] = useState(60);
     const [guessesLeft, setGuessesLeft] = useState(3);
     const [guessState, setGuessState] = useState('none');
 
+    // Check the game's state (either time's up or no guesses left) and update/navigate accordingly.
     useEffect(() => {
         if (timeLeft <= 0 || guessesLeft <= 0) {
             updateGameState(wordData[numericId].word, false, 3 - guessesLeft);
@@ -29,12 +31,15 @@ function GamePage({ updateGameState }) {
         }
     }, [timeLeft, guessesLeft, numericId, navigate, wordData.length, updateGameState, wordData]);
 
+    // Handle the user's word guess.
     const handleGuess = (guess) => {
         if (guess === wordData[numericId].word) {
+            // Correct guess.
             setGuessState('');
             setTimeout(() => {
                 updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, true, 3 - guessesLeft);;
                 setGuessState('correct');
+                // Navigate to results or next game.
                 if (numericId >= wordData.length - 1) {
                     navigate(`/results`);
                 } else {
@@ -44,6 +49,7 @@ function GamePage({ updateGameState }) {
                 }
             }, 100);
         } else {
+            // Incorrect guess.
             setGuessesLeft(prevGuessesLeft => prevGuessesLeft - 1);
             setGuessState('');
 
@@ -51,6 +57,7 @@ function GamePage({ updateGameState }) {
                 setGuessState('incorrect');
             }, 100);
 
+            // Last incorrect guess, navigate accordingly.
             if(guessesLeft === 1) {
                 updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, false, 3 - guessesLeft);;
                 if (numericId >= wordData.length - 1) {
@@ -64,6 +71,7 @@ function GamePage({ updateGameState }) {
         }
     };
 
+    // Retrieve data for the current word.
     const data = wordData[numericId];
 
     return (

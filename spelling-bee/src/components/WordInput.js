@@ -10,8 +10,10 @@ function WordInput({ onSubmit, guessesLeft, guessState }) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        // Capitalize the first letter of the word and make the rest lowercase.
         const formattedValue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 
+        // Clear the input after submitting.
         onSubmit(formattedValue); 
         setValue(''); 
     }

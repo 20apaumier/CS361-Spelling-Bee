@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 function WordTimer({ timeLeft, setTimeLeft }) {
     
+    // subtracts timeLeft by 1 and returns the timeLeft in html
     useEffect(() => {
         const timerId = setInterval(() => {
             setTimeLeft(timeLeft - 1);

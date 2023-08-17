@@ -9,6 +9,7 @@ function BeginGame() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Fetch a random integer from the microservice.
   const getMicroserviceRandomInt = async () => {
     try {
       const response = await fetch(RANDOM_INT_URL, {
@@ -26,23 +27,28 @@ function BeginGame() {
     }
   };
 
+  // Handle the game start process.
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
 
     try {
+      // Fetch WORD_COUNT number of random integers.
       const randomIntPromises = Array.from({ length: WORD_COUNT }, getMicroserviceRandomInt);
       const randomInts = await Promise.all(randomIntPromises);
 
+      // Retrieve word data for each random integer.
       const wordPromises = randomInts.map(GetWord);
       const words = await Promise.all(wordPromises);
 
+      // Structure word data.
       const wordData = words.map(({ Word, Definition, Sentence }) => ({
         word: Word,
         definition: Definition,
         sentence: Sentence
       }));
 
+      // Navigate to the game page with the word data.
       navigate("/game/0", { state: { wordData }});
     } catch (error) {
       console.error(error);
@@ -51,6 +57,7 @@ function BeginGame() {
     } 
   };
 
+  // Render the start game button or a loading indicator.
   return (
     <nav className="App-nav">
       {isLoading ? (
