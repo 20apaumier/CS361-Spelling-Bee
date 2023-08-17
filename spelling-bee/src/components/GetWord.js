@@ -1,23 +1,42 @@
 import Papa from 'papaparse';
-import csvFile from '../words.csv'; // Assuming the csv file is in the same directory
+import csvFile from '../words.csv';
 
-const GetWord = (index) => {
+let cachedData = null;
+
+const parseCSV = () => {
   return new Promise((resolve, reject) => {
+    if (cachedData) {
+      resolve(cachedData);
+      return;
+    }
+
     Papa.parse(csvFile, {
       download: true,
       header: true,
-      complete: (results) => {
-        if (index >= 0 && index < results.data.length) {
-          resolve(results.data[index]);
-        } else {
-          reject(new Error(`Index out of bounds: ${index}`));
+      complete: ({ data, errors }) => {
+        if (errors.length) {
+          reject(new Error(errors[0].message));
+          return;
         }
-      },
-      error: (error) => {
-        reject(error);
-      },
+        cachedData = data;
+        resolve(data);
+      }
     });
   });
+}
+
+const GetWord = async (index) => {
+  try {
+    const data = await parseCSV();
+
+    if (index >= 0 && index < data.length) {
+      return data[index];
+    } else {
+      throw new Error(`Index out of bounds: ${index}`);
+    }
+  } catch (error) {
+    throw error;
+  }
 }
 
 export default GetWord;
