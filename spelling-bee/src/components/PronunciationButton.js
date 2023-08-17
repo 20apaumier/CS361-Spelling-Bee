@@ -2,7 +2,7 @@ import React from 'react';
 
 function PronunciationButton({ word }) {
     const playAudio = () => {
-        var msg = new SpeechSynthesisUtterance();
+        const msg = new SpeechSynthesisUtterance();
         msg.text = word;
         window.speechSynthesis.speak(msg);
     };
