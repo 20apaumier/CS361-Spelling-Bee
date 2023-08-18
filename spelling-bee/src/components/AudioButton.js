@@ -8,7 +8,7 @@ function AudioButton({ text, label }) {
         window.speechSynthesis.speak(msg);
     };
 
-    return <button onClick={playAudio} className={`${label}Button`}>Play {label}</button>
+    return <button onClick={playAudio} className='audioButton'>Play {label}</button>
 }
 
 export default AudioButton;
