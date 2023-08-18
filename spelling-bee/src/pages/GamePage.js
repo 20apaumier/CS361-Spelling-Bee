@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import WordInput from '../components/WordInput';
-import PronunciationButton from '../components/PronunciationButton';
+import AudioButton from '../components/AudioButton';
 import WordTimer from '../components/WordTimer';
-import SentenceButton from '../components/SentenceButton';
 
 function GamePage({ updateGameState }) {
     const navigate = useNavigate();
@@ -82,8 +81,8 @@ function GamePage({ updateGameState }) {
         <WordInput onSubmit={handleGuess} onGuess={handleGuess} guessState={guessState}/>
         <p>Guesses left: {guessesLeft}</p>
         <p>{data.definition}</p>
-        <PronunciationButton word={data.word} />
-        <SentenceButton sentence={data.sentence} />
+        <AudioButton text={data.word} label="Pronunciation" />
+        <AudioButton text={data.sentence} label="Sentence" />
         <button id="infoButton">i</button>
         <span className="tooltip">Click either of these buttons to hear the pronunciation of the word or it's use in a sentence. Must have audio turned on.</span>
       </div>
