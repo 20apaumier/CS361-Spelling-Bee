@@ -2,29 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GetWord from './GetWord';
 
-const RANDOM_INT_URL = "http://localhost:9700/";
 const WORD_COUNT = 3;
 
 function BeginGame() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch a random integer from the microservice.
-  const getMicroserviceRandomInt = async () => {
-    try {
-      const response = await fetch(RANDOM_INT_URL, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ request: "getRandomInt" })
-      });
-      const { int } = await response.json();
-      return int;
-    } catch (error) {
-      console.error("Error fetching random int:", error);
-      throw error;
-    }
+  // Generate a random integer from 0-999.
+  const getLocalRandomInt = () => {
+    return getRandomInt(0, 999);
   };
 
   // Handle the game start process.
@@ -33,9 +19,8 @@ function BeginGame() {
     setIsLoading(true);
 
     try {
-      // Fetch WORD_COUNT number of random integers.
-      const randomIntPromises = Array.from({ length: WORD_COUNT }, getMicroserviceRandomInt);
-      const randomInts = await Promise.all(randomIntPromises);
+      // Fetch WORD_COUNT number of random integers locally.
+      const randomInts = Array.from({ length: WORD_COUNT }, getLocalRandomInt);
 
       // Retrieve word data for each random integer.
       const wordPromises = randomInts.map(GetWord);
@@ -69,6 +54,10 @@ function BeginGame() {
       )}
     </nav>
   );
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 export default BeginGame;
