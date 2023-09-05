@@ -11,7 +11,7 @@ function ResultPage({ gameState, resetGameState }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         resetGameState();
-        navigate(`/`);
+        navigate(`/CS361-Spelling-Bee/`);
     };
 
     // Handle the click event to show or hide additional word information.

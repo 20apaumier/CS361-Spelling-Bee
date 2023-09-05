@@ -21,11 +21,11 @@ function GamePage({ updateGameState }) {
         if (timeLeft <= 0 || guessesLeft <= 0) {
             updateGameState(wordData[numericId].word, false, 3 - guessesLeft);
             if (numericId >= wordData.length - 1) {   
-                navigate(`/results`);
+                navigate(`/CS361-Spelling-Bee/results`);
             } else {
                 setTimeLeft(60);
                 setGuessesLeft(3);
-                navigate(`/game/${numericId + 1}`, { state: { wordData }});
+                navigate(`/CS361-Spelling-Bee/game/${numericId + 1}`, { state: { wordData }});
             }
         }
     }, [timeLeft, guessesLeft, numericId, navigate, wordData.length, updateGameState, wordData]);
@@ -40,11 +40,11 @@ function GamePage({ updateGameState }) {
                 setGuessState('correct');
                 // Navigate to results or next game.
                 if (numericId >= wordData.length - 1) {
-                    navigate(`/results`);
+                    navigate(`/CS361-Spelling-Bee/results`);
                 } else {
                     setTimeLeft(60);
                     setGuessesLeft(3);
-                    navigate(`/game/${numericId + 1}`, { state: { wordData }});
+                    navigate(`/CS361-Spelling-Bee/game/${numericId + 1}`, { state: { wordData }});
                 }
             }, 100);
         } else {
@@ -60,11 +60,11 @@ function GamePage({ updateGameState }) {
             if(guessesLeft === 1) {
                 updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, false, 3 - guessesLeft);;
                 if (numericId >= wordData.length - 1) {
-                    navigate(`/results`);
+                    navigate(`/CS361-Spelling-Bee/results`);
                 } else {
                     setTimeLeft(60);
                     setGuessesLeft(3);
-                    navigate(`/game/${numericId + 1}`, { state: { wordData }});
+                    navigate(`/CS361-Spelling-Bee/game/${numericId + 1}`, { state: { wordData }});
                 }
             }
         }
@@ -75,7 +75,7 @@ function GamePage({ updateGameState }) {
 
     return (
       <div>
-        <button onClick={() => navigate(`/`)} className="small-button"> Main Menu</button>
+        <button onClick={() => navigate(`/CS361-Spelling-Bee/`)} className="small-button"> Main Menu</button>
         <h1>Word #{numericId + 1}</h1>
         <WordTimer timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
         <WordInput onSubmit={handleGuess} onGuess={handleGuess} guessState={guessState}/>

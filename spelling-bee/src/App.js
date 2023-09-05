@@ -22,6 +22,7 @@ function App() {
       <header className="App-header">
         <Router>
           <Routes>
+            <Route path="/CS361-Spelling-Bee" element={<HomePage/>} />
             <Route path="/" element={<HomePage/>} />
             <Route path="/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
             <Route path="/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />

@@ -34,7 +34,7 @@ function BeginGame() {
       }));
 
       // Navigate to the game page with the word data.
-      navigate("/game/0", { state: { wordData }});
+      navigate("/CS361-Spelling-Bee/game/0", { state: { wordData }});
     } catch (error) {
       console.error(error);
     } finally {
