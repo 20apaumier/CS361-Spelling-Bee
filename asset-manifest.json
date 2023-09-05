@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/CS361-Spelling-Bee/static/css/main.43c2b26a.css",
+    "main.js": "/CS361-Spelling-Bee/static/js/main.158e7cef.js",
+    "static/js/787.d0002d06.chunk.js": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js",
+    "static/media/words.csv": "/CS361-Spelling-Bee/static/media/words.bb0f5d63fea6c4b71036.csv",
+    "index.html": "/CS361-Spelling-Bee/index.html",
+    "main.43c2b26a.css.map": "/CS361-Spelling-Bee/static/css/main.43c2b26a.css.map",
+    "main.158e7cef.js.map": "/CS361-Spelling-Bee/static/js/main.158e7cef.js.map",
+    "787.d0002d06.chunk.js.map": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.43c2b26a.css",
+    "static/js/main.158e7cef.js"
+  ]
+}
