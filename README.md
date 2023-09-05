@@ -1,5 +1,5 @@
 # Spelling Bee Application
-This web app replicates a spelling bee game. The user can play as many times as they want with randomized words from the microservice my partner provided.
+This web app replicates a spelling bee game. The user can play as many times as they want with continuously randomized words.
 
 ## Installation
 Prior to cloning you must have Git and Node.js installed on your computer.
@@ -21,8 +21,3 @@ Start the application
 ```
 npm start
 ```
-
-## Notes
-Before beginning a game, ensure that my partner's microservice is up and running on your local device.
-
-microservice needed: https://github.com/brismithPDX/CS-361-MicroService
