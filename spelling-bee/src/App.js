@@ -9,8 +9,8 @@ function App() {
 
   const [gameState, setGameState] = useState([]);
 
-  const updateGameState = (word, definition, sentence, correct, guesses) => {
-      setGameState(prevState => [...prevState, {word, definition, sentence, correct, guesses}]);
+  const updateGameState = (word, definition, sentence, part_of_speech, language_of_origin, correct, guesses) => {
+      setGameState(prevState => [...prevState, {word, definition, sentence, part_of_speech, language_of_origin, correct, guesses}]);
   };
 
   const resetGameState = () => {
@@ -23,9 +23,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/CS361-Spelling-Bee" element={<HomePage/>} />
-            <Route path="/" element={<HomePage/>} />
-            <Route path="/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
-            <Route path="/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />
+            <Route path="/CS361-Spelling-Bee/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
+            <Route path="/CS361-Spelling-Bee/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />
           </Routes>
         </Router>
       </header>

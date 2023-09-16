@@ -12,6 +12,35 @@ code {
     monospace;
 }
 
+/* Main container styles */
+.container {
+  font-family: 'Arial', sans-serif;
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;  /* Center the container */
+  text-align: center; /* Center the child elements */
+}
+
+/* Typography & Spacing */
+.container h2 {
+  font-size: 2em;
+  margin-bottom: 100px;  /* Spacing below the title */
+}
+
+.container p {
+  margin: 50px 0;  /* Vertical spacing above and below the paragraph */
+  font-size: 1.1em;
+}
+
+/* Difficulty selection component styles */
+.difficulty-selection {
+  margin-bottom: 25px;  /* Spacing below the difficulty buttons */
+}
+
+.difficulty-button + .difficulty-button {
+  margin-left: 20px;  /* Spacing between difficulty buttons */
+}
+
 .small-button {
   background-color: #ffeb3b;
   color: #000;
@@ -32,22 +61,123 @@ code {
   color: #ffeb3b;
 }
 
+.difficulty-button {
+  width: 200px;
+  height: 80px;
+  border: none;
+  border-radius: 15px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.difficulty-button:hover {
+  transform: translateY(-5px); /* Small upward motion */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.difficulty-button:focus {
+  outline: none;
+}
+
+/* Individual Difficulty Styles */
+.difficulty-button.easy {
+  background: linear-gradient(135deg, #A8E063 0%, #56AB2F 100%);
+}
+
+.difficulty-button.medium {
+  background: linear-gradient(135deg, #FDBB2D 0%, #22C1C3 100%);
+}
+
+.difficulty-button.hard {
+  background: linear-gradient(135deg, #D31027 0%, #EA384D 100%);
+}
+
+/* Active State - if needed */
+.active-difficulty {
+  transform: scale(1.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
 .button {
   width: 300px;
   height: 120px;
-  border-radius: 10px;
-  font-size: large;
-  font-weight: bold;
+  border: none;
+  border-radius: 15px;  /* Same border-radius as .difficulty-button */
+  font-family: 'Press Start 2P', cursive;  /* Same font family as .difficulty-button */
+  font-size: 18px; /* Adjusted font size to match the .difficulty-button */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);  /* Same text-shadow as .difficulty-button */
   background-color: yellow;
+  transition: transform 0.2s, box-shadow 0.2s;  /* Same transitions as .difficulty-button */
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);  /* Initial shadow for the button */
 }
 
 .button:hover {
+  transform: translateY(-5px);  /* Same hover effect as .difficulty-button */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);  /* Enhanced shadow on hover */
   background-color: #ffd700;
 }
 
 .button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5);  /* Focused shadow effect */
+}
+
+/* If you have an active state for the button */
+.button.active {
+  transform: scale(1.1);  /* Make the button slightly bigger when active */
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);  /* Enhanced shadow for active state */
+}
+
+.button, .active-difficulty {
+  transition: all 0.3s ease-in-out;
+}
+
+.hint-button {
+  width: 150px;
+  height: 130px; /* height = sqrt(3) * width/2 for hexagon */
+  background-color: #ffc107; /* Honey color */
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin: 0 10px;
+
+  /* Hexagon styling */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hint-button:before, .hint-button:after {
+  content: "";
+  width: 60px;
+  height: 51.96px; /* half of hexagon height */
+  position: absolute;
+  background-color: inherit;
+  z-index: -1;
+}
+
+.hint-button:before {
+  top: -51.96px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.hint-button:after {
+  bottom: -51.96px;
+  clip-path: polygon(100% 0, 50% 100%, 0 0);
+}
+
+.hint-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hint-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.5); /* Focused shadow effect */
 }
 
 .text-input {

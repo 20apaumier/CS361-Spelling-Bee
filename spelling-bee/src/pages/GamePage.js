@@ -4,41 +4,50 @@ import WordInput from '../components/WordInput';
 import AudioButton from '../components/AudioButton';
 import WordTimer from '../components/WordTimer';
 
+// GamePage component represents the main gameplay interface.
 function GamePage({ updateGameState }) {
+    // Navigation and routing hooks to get parameters and navigate between pages.
     const navigate = useNavigate();
     const location = useLocation();
     const { wordId } = useParams();
-
+    
+    // Fetch word data and difficulty from route state.
     const wordData = location.state.wordData;
-    const numericId = Number(wordId);
+    const numericId = Number(wordId);  // Convert word ID to a number.
+    const { difficulty } = location.state;
 
-    const [timeLeft, setTimeLeft] = useState(60);
-    const [guessesLeft, setGuessesLeft] = useState(3);
-    const [guessState, setGuessState] = useState('none');
+    // State variables for game logic.
+    const [timeLeft, setTimeLeft] = useState(60);        // Remaining time for the current word.
+    const [guessesLeft, setGuessesLeft] = useState(3);   // Number of guesses left for the player.
+    const [guessState, setGuessState] = useState('none');// Track state of the user's guess.
 
-    // Check the game's state (either time's up or no guesses left) and update/navigate accordingly.
+    // Effect to handle end of game conditions based on time or guesses.
     useEffect(() => {
+        // Check if time has run out or no guesses are left.
         if (timeLeft <= 0 || guessesLeft <= 0) {
-            updateGameState(wordData[numericId].word, false, 3 - guessesLeft);
+            updateGameState(wordData[numericId]['word'], false, 3 - guessesLeft);
+            // Check if it's the last word. If so, navigate to results page.
             if (numericId >= wordData.length - 1) {   
                 navigate(`/CS361-Spelling-Bee/results`);
             } else {
+                // Reset time and guesses and navigate to the next word.
                 setTimeLeft(60);
                 setGuessesLeft(3);
                 navigate(`/CS361-Spelling-Bee/game/${numericId + 1}`, { state: { wordData }});
             }
         }
-    }, [timeLeft, guessesLeft, numericId, navigate, wordData.length, updateGameState, wordData]);
+    }, [timeLeft, guessesLeft, numericId, navigate, wordData, difficulty, updateGameState]);
 
-    // Handle the user's word guess.
+    // Function to handle the user's word guess.
     const handleGuess = (guess) => {
-        if (guess === wordData[numericId].word) {
-            // Correct guess.
+        // Check if the guess matches the current word.
+        if (guess === wordData[numericId]['word']) {
+            // User guessed correctly.
             setGuessState('');
             setTimeout(() => {
-                updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, true, 3 - guessesLeft);;
+                updateGameState(wordData[numericId]['word'], wordData[numericId]['definition'], wordData[numericId]['sentence'], wordData[numericId]['part_of_speech'], wordData[numericId]['language_of_origin'], true, 3 - guessesLeft);
                 setGuessState('correct');
-                // Navigate to results or next game.
+                // If it's the last word, navigate to results. Otherwise, go to the next word.
                 if (numericId >= wordData.length - 1) {
                     navigate(`/CS361-Spelling-Bee/results`);
                 } else {
@@ -48,17 +57,16 @@ function GamePage({ updateGameState }) {
                 }
             }, 100);
         } else {
-            // Incorrect guess.
+            // User guessed incorrectly.
             setGuessesLeft(prevGuessesLeft => prevGuessesLeft - 1);
             setGuessState('');
-
             setTimeout(() => {
                 setGuessState('incorrect');
             }, 100);
 
-            // Last incorrect guess, navigate accordingly.
+            // If it's the user's last guess, handle navigation accordingly.
             if(guessesLeft === 1) {
-                updateGameState(wordData[numericId].word, wordData[numericId].definition, wordData[numericId].sentence, false, 3 - guessesLeft);;
+                updateGameState(wordData[numericId]['word'], wordData[numericId]['definition'], wordData[numericId]['sentence'], wordData[numericId]['part_of_speech'], wordData[numericId]['language_of_origin'], false, 3 - guessesLeft);
                 if (numericId >= wordData.length - 1) {
                     navigate(`/CS361-Spelling-Bee/results`);
                 } else {
@@ -70,21 +78,28 @@ function GamePage({ updateGameState }) {
         }
     };
 
-    // Retrieve data for the current word.
-    const data = wordData[numericId];
-
+    // Render the game interface.
     return (
       <div>
+        {/* Button to navigate back to the main menu */}
         <button onClick={() => navigate(`/CS361-Spelling-Bee/`)} className="small-button"> Main Menu</button>
+        {/* Display the current word number */}
         <h1>Word #{numericId + 1}</h1>
+        {/* Timer component */}
         <WordTimer timeLeft={timeLeft} setTimeLeft={setTimeLeft} />
+        {/* Word input component for user to submit their guesses */}
         <WordInput onSubmit={handleGuess} onGuess={handleGuess} guessState={guessState}/>
+        {/* Display the number of guesses left and the word definition */}
         <p>Guesses left: {guessesLeft}</p>
-        <p>{data.definition}</p>
-        <AudioButton text={data.word} label="Pronunciation" />
-        <AudioButton text={data.sentence} label="Sentence" />
+        <p>Definition: {wordData[numericId]['definition']}</p>
+        {/* Audio buttons to provide hints to the user */}
+        <AudioButton text={wordData[numericId]['language_of_origin']} label="Language of Origin" />
+        <AudioButton text={wordData[numericId]['part_of_speech']} label="Part of Speech" />
+        <AudioButton text={wordData[numericId]['word']} label="Pronunciation" />
+        <AudioButton text={wordData[numericId]['sentence']} label="Sentence" />
+        {/* Information button and tooltip for users */}
         <button id="infoButton">i</button>
-        <span className="tooltip">Click either of these buttons to hear the pronunciation of the word or it's use in a sentence. Must have audio turned on.</span>
+        <span className="tooltip">Click any of these buttons to hear the corresponding hint. Must have audio turned on.</span>
       </div>
     );
 }

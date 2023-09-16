@@ -1,61 +1,68 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import GetWord from './GetWord';
+import { GetWord } from './GetWord';
 
+// Constant to represent the number of words to fetch for the game
 const WORD_COUNT = 3;
 
-function BeginGame() {
+function BeginGame({ difficulty, navigate }) {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
 
-  // Generate a random integer from 0-999.
+  // Utility function to generate a random integer between 0 and 99
   const getLocalRandomInt = () => {
-    return getRandomInt(0, 999);
+    return getRandomInt(0, 99);
   };
 
-  // Handle the game start process.
+  // Event handler for starting the game
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Validate if difficulty is selected
+    if (!difficulty) {
+      alert("Please select a difficulty level first!");
+      return;
+    }
+
+    // Start loading state
     setIsLoading(true);
 
     try {
-      // Fetch WORD_COUNT number of random integers locally.
+      // Generate an array of random integers
       const randomInts = Array.from({ length: WORD_COUNT }, getLocalRandomInt);
 
-      // Retrieve word data for each random integer.
-      const wordPromises = randomInts.map(GetWord);
+      // Fetch words based on difficulty and the random integers
+      const wordPromises = randomInts.map(index => GetWord(index, difficulty));
       const words = await Promise.all(wordPromises);
+      const wordData = words;
 
-      // Structure word data.
-      const wordData = words.map(({ Word, Definition, Sentence }) => ({
-        word: Word,
-        definition: Definition,
-        sentence: Sentence
-      }));
-
-      // Navigate to the game page with the word data.
-      navigate("/CS361-Spelling-Bee/game/0", { state: { wordData }});
+      // Navigate to the game page with the fetched words
+      navigate("/CS361-Spelling-Bee/game/0", { state: { wordData, difficulty }});
     } catch (error) {
+      // Handle any errors during the fetch operation
       console.error(error);
     } finally {
+      // End loading state
       setIsLoading(false);
-    } 
+    }
   };
 
-  // Render the start game button or a loading indicator.
   return (
     <nav className="App-nav">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <button type="submit" className="button">Begin Game!</button>
-        </form>
-      )}
+        {isLoading ? (
+            // Display loading indicator while fetching words
+            <div>Loading...</div>
+        ) : (
+            // Display the game start button if not loading
+            <form onSubmit={handleSubmit}>
+                <button type="submit" className="button">
+                    Begin Game!
+                </button>
+            </form>
+        )}
     </nav>
-  );
+);
 }
 
+// Utility function to generate a random integer between min and max (inclusive)
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
