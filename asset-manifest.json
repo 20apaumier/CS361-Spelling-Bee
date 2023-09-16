@@ -1,16 +1,18 @@
 {
   "files": {
-    "main.css": "/CS361-Spelling-Bee/static/css/main.43c2b26a.css",
-    "main.js": "/CS361-Spelling-Bee/static/js/main.010e9733.js",
+    "main.css": "/CS361-Spelling-Bee/static/css/main.065c6174.css",
+    "main.js": "/CS361-Spelling-Bee/static/js/main.0e2d1fc8.js",
     "static/js/787.d0002d06.chunk.js": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js",
-    "static/media/words.csv": "/CS361-Spelling-Bee/static/media/words.bb0f5d63fea6c4b71036.csv",
+    "static/media/easy_words.csv": "/CS361-Spelling-Bee/static/media/easy_words.93b973ce295a6fdf4a46.csv",
+    "static/media/medium_words.csv": "/CS361-Spelling-Bee/static/media/medium_words.45e5a48af686b794bd3b.csv",
+    "static/media/hard_words.csv": "/CS361-Spelling-Bee/static/media/hard_words.5888f251dd0a62cc397d.csv",
     "index.html": "/CS361-Spelling-Bee/index.html",
-    "main.43c2b26a.css.map": "/CS361-Spelling-Bee/static/css/main.43c2b26a.css.map",
-    "main.010e9733.js.map": "/CS361-Spelling-Bee/static/js/main.010e9733.js.map",
+    "main.065c6174.css.map": "/CS361-Spelling-Bee/static/css/main.065c6174.css.map",
+    "main.0e2d1fc8.js.map": "/CS361-Spelling-Bee/static/js/main.0e2d1fc8.js.map",
     "787.d0002d06.chunk.js.map": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.43c2b26a.css",
-    "static/js/main.010e9733.js"
+    "static/css/main.065c6174.css",
+    "static/js/main.0e2d1fc8.js"
   ]
 }
