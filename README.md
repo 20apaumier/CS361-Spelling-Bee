@@ -1,7 +1,7 @@
 # Spelling Bee Application
 This web app replicates a spelling bee game. The user can play as many times as they want with continuously randomized words.
 
-## Installation
+## Goals
 The goal of this branch is to add the following features revolving around users:
  
 * Users can sign in using an email/username and password so that they can keep track of their progress.
