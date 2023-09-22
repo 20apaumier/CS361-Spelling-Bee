@@ -4,6 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import ResultPage from './pages/ResultPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.withCredentials = true;
 
 function App() {
 
@@ -22,7 +28,9 @@ function App() {
       <header className="App-header">
         <Router>
           <Routes>
-            <Route path="/CS361-Spelling-Bee" element={<HomePage/>} />
+            <Route path="/CS361-Spelling-Bee/" element={<HomePage/>} />
+            <Route path="/CS361-Spelling-Bee/register" element={<RegisterPage/>} />
+            <Route path="/CS361-Spelling-Bee/login" element={<LoginPage/>} />
             <Route path="/CS361-Spelling-Bee/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
             <Route path="/CS361-Spelling-Bee/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />
           </Routes>
