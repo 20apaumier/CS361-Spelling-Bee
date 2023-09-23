@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+function NavBar() {
     return (
         <nav>
             <Link to= '/CS361-Spelling-Bee/'>Home</Link>
@@ -9,3 +9,5 @@ export default function NavBar() {
         </nav>
     )
 }
+
+export default NavBar;

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ResultPage.css'
+import { UserContext } from '../context/userContext';
 
 function ResultPage({ gameState, resetGameState }) {
 
     const navigate = useNavigate();
+    const {user} = useContext(UserContext);
 
     // Local state to keep track of which word's additional information is being displayed
     const [showInfoIndex, setShowInfoIndex] = useState(null);
@@ -29,6 +31,7 @@ function ResultPage({ gameState, resetGameState }) {
     return (
         <div className="container">
             <h1>Game Results</h1>
+            {!!user && (<h2>Hi {user.name}!</h2>)}
             {/* Loop through the game state to display each word's result */}
             {gameState.map((result, index) => (
                 <div className="result" key={index}>

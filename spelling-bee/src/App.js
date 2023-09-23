@@ -7,6 +7,9 @@ import ResultPage from './pages/ResultPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import axios from 'axios';
+import NavBar from './components/NavBar';
+import { Toaster } from 'react-hot-toast';
+import { UserContextProvider } from './context/userContext';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -27,6 +30,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Router>
+        <UserContextProvider>
+        <NavBar />
+        <Toaster position = 'bottom-right' toastOptions={{duration: 2000}} />
           <Routes>
             <Route path="/CS361-Spelling-Bee/" element={<HomePage/>} />
             <Route path="/CS361-Spelling-Bee/register" element={<RegisterPage/>} />
@@ -34,6 +40,7 @@ function App() {
             <Route path="/CS361-Spelling-Bee/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
             <Route path="/CS361-Spelling-Bee/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />
           </Routes>
+        </UserContextProvider>
         </Router>
       </header>
     </div>
