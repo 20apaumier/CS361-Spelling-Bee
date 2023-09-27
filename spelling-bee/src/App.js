@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState }from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useContext }from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import GamePage from './pages/GamePage';
 import ResultPage from './pages/ResultPage';
@@ -9,10 +9,16 @@ import LoginPage from './pages/LoginPage';
 import axios from 'axios';
 import NavBar from './components/NavBar';
 import { Toaster } from 'react-hot-toast';
-import { UserContextProvider } from './context/userContext';
+import { UserContextProvider, UserContext } from './context/userContext';
+import ProfilePage from './pages/ProfilePage';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
+
+function ProtectedRoute({ children }) {
+  const { user } = useContext(UserContext);
+  return user ? children : <Navigate to="/CS361-Spelling-Bee/login" />;
+}
 
 function App() {
 
@@ -28,21 +34,38 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Router>
-        <UserContextProvider>
-        <NavBar />
-        <Toaster position = 'bottom-right' toastOptions={{duration: 2000}} />
-          <Routes>
-            <Route path="/CS361-Spelling-Bee/" element={<HomePage/>} />
-            <Route path="/CS361-Spelling-Bee/register" element={<RegisterPage/>} />
-            <Route path="/CS361-Spelling-Bee/login" element={<LoginPage/>} />
-            <Route path="/CS361-Spelling-Bee/game/:wordId" element={<GamePage updateGameState={updateGameState}/>} />
-            <Route path="/CS361-Spelling-Bee/results" element={<ResultPage gameState={gameState} resetGameState={resetGameState} />} />
-          </Routes>
-        </UserContextProvider>
-        </Router>
-      </header>
+        <header className="App-header">
+            <Router>
+                <UserContextProvider>
+                    <NavBar />
+                    <Toaster position='bottom-right' toastOptions={{duration: 2000}} />
+                    <Routes>
+                        <Route path="/CS361-Spelling-Bee/login" element={<LoginPage />} />
+                        <Route path="/CS361-Spelling-Bee/register" element={<RegisterPage />} />
+                        <Route path="/CS361-Spelling-Bee/" element={
+                          <ProtectedRoute>
+                            <HomePage />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/CS361-Spelling-Bee/profile" element={
+                          <ProtectedRoute>
+                            <ProfilePage />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/CS361-Spelling-Bee/game/:wordId" element={
+                          <ProtectedRoute>
+                            <GamePage updateGameState={updateGameState} />
+                          </ProtectedRoute>
+                        } />
+                        <Route path="/CS361-Spelling-Bee/results" element={
+                          <ProtectedRoute>
+                            <ResultPage gameState={gameState} resetGameState={resetGameState} />
+                          </ProtectedRoute>
+                        } />
+                    </Routes>
+                </UserContextProvider>
+            </Router>
+        </header>
     </div>
   );
 }

@@ -1,0 +1,45 @@
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0 auto;
+    background-color: #444444; /* Light background color */
+    padding: 20px;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #000000; /* Dark Text color */
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #000000; /* Medium dark text color */
+}
+
+/* Button Styles */
+.button, .logoutButton {
+    background-color: #FFD700; /* Blue background color */
+    color: #444444; /* White text color */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px; /* Rounded Corners */
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover, .logoutButton:hover {
+    background-color: #FFC700; /* Darker blue on hover */
+}
+
+/* Form Styles */
+form {
+    margin-bottom: 20px;
+}

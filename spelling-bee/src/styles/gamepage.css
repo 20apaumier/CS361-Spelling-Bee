@@ -1,0 +1,51 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #444444;
+}
+
+.game-container > * {
+    margin-bottom: 20px; /* Consistent spacing between elements */
+}
+
+.game-container > p {
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Equal spacing between buttons */
+}
+
+.small-button, 
+#infoButton {
+    background-color: #ffeb3b; /* Yellow */
+    color: #000; /* Black Text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    flex-shrink: 0;
+}
+
+.small-button:hover, 
+#infoButton:hover {
+    background-color: #ffcc00; /* Darker Yellow on hover */
+}
+
+#infoButton:hover + .tooltip {
+    opacity: 1; /* Show tooltip on hover */
+}
+
+.definition {
+    max-width: 600px;
+    word-wrap: break-word;
+    font-size: 1.2rem;  /* Adjust size as needed */
+    margin: 30px 0;     /* Optional: Add some spacing around the definition */
+}

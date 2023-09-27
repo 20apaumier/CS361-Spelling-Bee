@@ -1,0 +1,44 @@
+/* Stylesheet */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the body takes full viewport height */
+    background-color: #444444; /* Light Grey background for entire page */
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.home-container > * {
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.home-container > *:last-child {
+    margin-bottom: 0; /* Remove margin-bottom for the last child */
+}
+
+/* Other styling for children components like headings, paragraphs, and buttons */
+h1 {
+    margin-bottom: 100px;
+    font-weight: bold;
+}
+
+.difficulty-selection {
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    margin: 20px;
+    font-weight: bold;
+    padding: 20px;
+}

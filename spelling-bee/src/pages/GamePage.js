@@ -3,6 +3,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import WordInput from '../components/WordInput';
 import AudioButton from '../components/AudioButton';
 import WordTimer from '../components/WordTimer';
+import '../styles/gamepage.css'
 
 // GamePage component represents the main gameplay interface.
 function GamePage({ updateGameState }) {
@@ -80,7 +81,7 @@ function GamePage({ updateGameState }) {
 
     // Render the game interface.
     return (
-      <div>
+      <div className = 'game-container'>
         {/* Button to navigate back to the main menu */}
         <button onClick={() => navigate(`/CS361-Spelling-Bee/`)} className="small-button"> Main Menu</button>
         {/* Display the current word number */}
@@ -91,15 +92,14 @@ function GamePage({ updateGameState }) {
         <WordInput onSubmit={handleGuess} onGuess={handleGuess} guessState={guessState}/>
         {/* Display the number of guesses left and the word definition */}
         <p>Guesses left: {guessesLeft}</p>
-        <p>Definition: {wordData[numericId]['definition']}</p>
+        <p className='definition'>Definition: {wordData[numericId]['definition']}</p>
         {/* Audio buttons to provide hints to the user */}
-        <AudioButton text={wordData[numericId]['language_of_origin']} label="Language of Origin" />
-        <AudioButton text={wordData[numericId]['part_of_speech']} label="Part of Speech" />
-        <AudioButton text={wordData[numericId]['word']} label="Pronunciation" />
-        <AudioButton text={wordData[numericId]['sentence']} label="Sentence" />
-        {/* Information button and tooltip for users */}
-        <button id="infoButton">i</button>
-        <span className="tooltip">Click any of these buttons to hear the corresponding hint. Must have audio turned on.</span>
+        <div className="button-container">
+            <AudioButton text={wordData[numericId]['language_of_origin']} label="Language of Origin" />
+            <AudioButton text={wordData[numericId]['part_of_speech']} label="Part of Speech" />
+            <AudioButton text={wordData[numericId]['word']} label="Pronunciation" />
+            <AudioButton text={wordData[numericId]['sentence']} label="Sentence" />
+        </div>
       </div>
     );
 }
