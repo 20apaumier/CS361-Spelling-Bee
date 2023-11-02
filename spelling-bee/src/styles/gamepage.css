@@ -1,0 +1,51 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #444444;
+}
+
+.game-container > * {
+    margin-bottom: 20px;
+}
+
+.game-container > p {
+    font-weight: bold;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.small-button, 
+#infoButton {
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    flex-shrink: 0;
+}
+
+.small-button:hover, 
+#infoButton:hover {
+    background-color: #ffcc00;
+}
+
+#infoButton:hover + .tooltip {
+    opacity: 1;
+}
+
+.definition {
+    max-width: 600px;
+    word-wrap: break-word;
+    font-size: 1.2rem;
+    margin: 30px 0;
+}

@@ -8,6 +8,7 @@ function AudioButton({ text, label }) {
         window.speechSynthesis.speak(msg);
     };
 
+    // the label that is passed in will be shown in text on the button
     return <button onClick={playAudio} className = "hint-button">Play {label}</button>
 }
 

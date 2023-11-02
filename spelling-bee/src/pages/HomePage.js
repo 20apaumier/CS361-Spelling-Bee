@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BeginGame from '../components/BeginGame';
 import DifficultySelection from '../components/DifficultySelection';
+import '../styles/HomePage.css'
 
 function HomePage() {
     // Hook to facilitate navigation between routes
@@ -16,17 +17,16 @@ function HomePage() {
     };
 
     return (
-        <div className="container">
-            {/* Title of the application */}
+        <div className="home-container">
             <h1>Welcome to the Spelling Bee!</h1>
             <div className="difficulty-selection">
                 {/* Prompt user to select a difficulty level */}
-                <p>Select your difficulty:</p>
+                <h2>Select your difficulty:</h2>
                 {/* Component to allow user to select a difficulty level */}
                 <DifficultySelection onDifficultySelect={handleDifficultySelect} />
             </div>
             {/* Instructional text */}
-            <p>Press the button below to begin your game!</p>
+            <h2>Press the button below to begin your game!</h2>
             {/* Button to start the game with the selected difficulty */}
             <BeginGame difficulty={selectedDifficulty} navigate={navigate} />
         </div>

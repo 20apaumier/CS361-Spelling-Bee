@@ -3,11 +3,7 @@ import easyWords from '../easy_words.csv';
 import mediumWords from '../medium_words.csv';
 import hardWords from '../hard_words.csv';
 
-/**
- * Parse a CSV file of words based on the given difficulty using the PapaParse library.
- * @param {string} difficulty - The difficulty level (easy, medium, hard).
- * @returns {Promise<Array>} - Promise resolving to the list of words parsed from the CSV.
- */
+// Parse a CSV file of words based on the given difficulty using the PapaParse library.
 const parseCSV = (difficulty) => {
   let file;
   
@@ -19,6 +15,7 @@ const parseCSV = (difficulty) => {
       default: file = easyWords;  // Default to easy words if difficulty is not recognized
   }
 
+  // promise to obtain the data from the specified csv file
   return new Promise((resolve, reject) => {
     Papa.parse(file, {
       download: true,
@@ -39,17 +36,12 @@ const parseCSV = (difficulty) => {
   });
 }
 
-/**
- * Fetch a word from the CSV data based on the provided index and difficulty.
- * @param {number} index - The index of the word to fetch.
- * @param {string} difficulty - The difficulty level (easy, medium, hard).
- * @returns {Promise<Object>} - Promise resolving to the word data.
- */
+// Fetch a word from the CSV data based on the provided index and difficulty.
+// this will return the index,word,definition,sentence,part_of_speech, and language_of_origin
 const GetWord = async (index, difficulty) => {
   try {
     const data = await parseCSV(difficulty);
     if (index >= 0 && index < data.length) {
-      console.log("data[index]: ", data[index])
       return data[index];
     } else {
       throw new Error(`Index out of bounds: ${index}`);

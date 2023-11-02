@@ -1,0 +1,27 @@
+/* Word Tracker container */
+.word-tracker {
+    background-color: #444444; /* grey background */
+    border: 2px solid #ffeb3b; /* yellow border */
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px; /* Adjust this width according to your preference */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* subtle shadow for depth */
+    margin: 0 auto; /* center the container if it has a max-width */
+    text-align: center;
+}
+
+/* Word Tracker title */
+.word-tracker h2 {
+    color: black; /* yellow color for contrast against grey */
+    text-align: center;
+    margin-bottom: 20px; /* spacing beneath the title */
+    border-bottom: 2px solid black; /* black underline for emphasis */
+    padding-bottom: 10px;
+}
+
+/* SVG Styling */
+.word-tracker svg {
+    display: block; /* makes SVG block-level, which can help with centering */
+    margin: 0 auto; /* center the SVG if it's narrower than the container */
+}

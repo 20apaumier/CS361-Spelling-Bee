@@ -34,7 +34,7 @@ function BeginGame({ difficulty, navigate }) {
       const words = await Promise.all(wordPromises);
       const wordData = words;
 
-      // Navigate to the game page with the fetched words
+      // Navigate to the game page with the fetched words and difficulty of the game
       navigate("/CS361-Spelling-Bee/game/0", { state: { wordData, difficulty }});
     } catch (error) {
       // Handle any errors during the fetch operation

@@ -1,0 +1,54 @@
+/* Enhanced Login Page Styles */
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #444444; /* Light Gray Background */
+  }
+  
+  .login-form {
+    background: #000000; /* Black */
+    padding: 40px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); /* Smooth Shadow */
+    border-radius: 12px;
+    width: 350px; /* Enhanced Width */
+    text-align: center; /* Center the text */
+  }
+  
+  .login-title {
+    font-size: 2em; /* Larger Font Size */
+    margin-bottom: 20px; /* More space below the title */
+    color: #ffffff; /* White */
+    font-weight: 700; /* Bold */
+  }
+  
+  .login-form input {
+    display: block;
+    width: 80%; /* Less than 100% for better appearance */
+    margin: 35px auto; /* Centering and more margin */
+    padding: 12px; /* More Padding */
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Rounded Corners */
+    color: #ffffff; /* White */
+    background-color: #444444; /* Grey */
+  }
+  
+  .login-form button {
+    background: #FFD700; /* Yellow */
+    color: #000000; /* Black */
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px; /* More Padding */
+    border: none;
+    border-radius: 6px; /* Rounded Corners */
+    transition: background 0.3s ease-in-out;
+    display: block;
+    width: 80%; /* Less than 100% for better appearance */
+    margin: 35px auto; /* Centering and more margin */
+  }
+  
+  .login-form button:hover {
+    background: #FFC700; /* Lighter Yellow */
+  }

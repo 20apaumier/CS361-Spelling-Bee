@@ -1,0 +1,61 @@
+/* Reset default margins and padding for the body and html elements */
+body, html {
+    margin: 0;
+    padding: 0;
+    /* Ensure the body takes the full viewport height for proper centering */
+    height: 100%;
+    /* Set a light grey background color for the entire page */
+    background-color: #444444;
+}
+
+/* Styling for the main home container */
+.home-container {
+    /* Use flexbox for easy centering and layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Ensure container height is at least the full viewport height */
+    min-height: 100vh;
+}
+
+/* Apply consistent bottom margin to all direct children of the home container */
+.home-container > * {
+    margin-bottom: 20px;
+}
+
+/* Remove the bottom margin for the last direct child of the home container */
+.home-container > *:last-child {
+    margin-bottom: 0;
+}
+
+/* Styling for main heading (h1) */
+h1 {
+    /* Increase spacing below the heading */
+    margin-bottom: 100px;
+    /* Bold the heading for emphasis */
+    font-weight: bold;
+}
+
+/* Styling for the difficulty selection container */
+.difficulty-selection {
+    /* Provide padding for the container content */
+    padding: 20px;
+    /* Margin for spacing outside the container */
+    margin: 20px;
+    /* Use flexbox for content layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for secondary heading (h2) */
+h2 {
+    /* Spacing around the heading */
+    margin: 20px;
+    /* Make the heading bold for emphasis */
+    font-weight: bold;
+    /* Add padding for spacing within the heading element */
+    padding: 20px;
+}

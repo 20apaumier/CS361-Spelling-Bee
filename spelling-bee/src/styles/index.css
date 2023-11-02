@@ -136,7 +136,7 @@ code {
 
 .hint-button {
   width: 150px;
-  height: 130px; /* height = sqrt(3) * width/2 for hexagon */
+  height: 130px;
   background-color: #ffc107; /* Honey color */
   border: none;
   font-family: 'Press Start 2P', cursive;
@@ -287,5 +287,3 @@ code {
   animation: correct-guess 0.5s 2;
   border: 2px solid green;
 }
-
-

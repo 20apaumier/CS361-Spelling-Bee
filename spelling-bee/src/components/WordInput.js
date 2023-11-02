@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
-/**
- * WordInput component provides an input form for users to guess a word.
- * 
- * @param {Function} onSubmit - Function to handle the submission of a word guess.
- * @param {number} guessesLeft - Number of remaining guesses.
- * @param {string} guessState - State of the current guess (correct/incorrect).
- */
+// This function provides the input form so the user can guess the word
 function WordInput({ onSubmit, guessesLeft, guessState }) {
     // State to hold the current input value.
     const [value, setValue] = useState('');
@@ -31,6 +25,7 @@ function WordInput({ onSubmit, guessesLeft, guessState }) {
         setValue(''); 
     }
 
+    // Return the input form
     return (
         <form onSubmit={handleSubmit}>
             <input 
