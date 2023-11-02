@@ -2,7 +2,7 @@ import { useState, useContext, React} from "react";
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
-import '../styles/login.css'
+import '../styles/LoginPage.css'
 import { UserContext } from '../context/userContext';
 
 export default function LoginPage() {
@@ -13,11 +13,12 @@ export default function LoginPage() {
     });
     const { setUser } = useContext(UserContext);
 
+    // function to handle to login process
     const loginUser = async (e) => {
         e.preventDefault();
         const {email, password } = data;
-        console.log('email: ', email);
-        console.log('password: ', password);
+
+        // try to login
         try {
             const {data} = await axios.post('/login', {
                 email,
@@ -25,9 +26,8 @@ export default function LoginPage() {
             });
             if (data.error) {
                 toast.error(data.error)
-                console.log('error logging in: ', data.error)
             } else {
-                console.log("logging in, setting data to {} and navigating to home page.")
+                // if logged in, update user context and data then navigate to home page
                 setUser(data);
                 setData({});
                 navigate('/CS361-Spelling-Bee/')

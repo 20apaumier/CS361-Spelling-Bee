@@ -43,3 +43,14 @@ h2 {
 form {
     margin-bottom: 20px;
 }
+
+.stats-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed, maybe 'center' or 'flex-start' depending on your design. */
+    gap: 20px; /* Adjust the space between the components as needed */
+}
+
+/* If you want to make sure they take up equal space, use this: */
+.stats-container > * {
+    flex: 1;
+}

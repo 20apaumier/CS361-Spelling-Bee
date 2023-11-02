@@ -2,10 +2,6 @@ const User = require('../models/user');
 const { hashPassword, comparePasswords } = require('../helpers/auth');
 const jwt = require('jsonwebtoken');
 
-const test = (req, res) => {
-    res.json('test is working!');
-};
-
 // Register endpoint
 const registerUser = async (req, res) => {
     try {
@@ -17,7 +13,7 @@ const registerUser = async (req, res) => {
                 error: 'Name is required'
             })
         };
-        // Check if password was entered and six or more characters
+        // Check if password was entered and consists of six or more characters
         if (!password || password.length < 6) {
             return res.json({
                 error: 'Password is required and should be at least 6 characters long'
@@ -78,6 +74,7 @@ const loginUser = async (req, res) => {
     }
 }
 
+// Get user endpoint
 const getProfile = (req, res) => {
     const { token } = req.cookies
     if (token) {
@@ -90,15 +87,13 @@ const getProfile = (req, res) => {
     }
 }
 
-// Log out user
+// Log out user endpoint
 const logoutUser = (req, res) => {
     res.clearCookie('token');
     res.json({message: 'Logged out successfully'});
 }
 
-
 module.exports = {
-    test,
     registerUser,
     loginUser,
     getProfile,

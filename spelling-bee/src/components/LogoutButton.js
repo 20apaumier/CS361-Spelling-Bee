@@ -1,12 +1,16 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
+
+// This was changed to a Link in order to maintain formality in the navbar
+// The logout button (Link) is now in the navbar
 
 function LogoutButton() {
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
 
+    // function to log out the user and clear the cookies then navigate to login screen
     const handleLogout = async () => {
         try {
             await axios.post('http://localhost:8000/logout');
@@ -20,7 +24,7 @@ function LogoutButton() {
     };
 
     return (
-        <button onClick={handleLogout} className = 'logoutButton'>Logout</button>
+        <Link onClick={handleLogout} >Logout</Link>
     );
 }
 

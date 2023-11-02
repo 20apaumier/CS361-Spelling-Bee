@@ -2,7 +2,7 @@ import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BeginGame from '../components/BeginGame';
 import DifficultySelection from '../components/DifficultySelection';
-import '../styles/homepage.css'
+import '../styles/HomePage.css'
 
 function HomePage() {
     // Hook to facilitate navigation between routes

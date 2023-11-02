@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+// This function returns the h1 element with the current time -= 1
 function WordTimer({ timeLeft, setTimeLeft }) {
     
     // subtracts timeLeft by 1 and returns the timeLeft in html

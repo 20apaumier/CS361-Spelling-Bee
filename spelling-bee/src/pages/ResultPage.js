@@ -1,52 +1,95 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ResultPage.css'
 import { UserContext } from '../context/userContext';
+import WordTracker from '../components/WordTracker';
+import Leaderboard from '../components/Leaderboard';
+import '../styles/ResultPage.css';
 
 function ResultPage({ gameState, resetGameState }) {
 
     const navigate = useNavigate();
     const {user} = useContext(UserContext);
+    const [userStats, setUserStats] = useState(null);
 
-    // Local state to keep track of which word's additional information is being displayed
-    const [showInfoIndex, setShowInfoIndex] = useState(null);
+    // Effect hook to fetch user statistics.
+    useEffect(() => {
+        const fetchUserStats = async () => {
+            // try to fetch user stats from server with the user's id
+            try {
+               const response = await fetch(`http://localhost:8000/getUserStats/${user._id}`, {
+                   method: 'GET',
+                   credentials: 'include',
+                   headers: {
+                       'Content-Type': 'application/json',
+                   }
+               });
+               if (!response.ok) {
+                   throw new Error('netword response was not ok')
+               }
+               // if success, set the userStats to the json response
+               const data = await response.json();
+               setUserStats(data);
+            } catch (error) {
+               console.log('Error with fetch operations: ', error)
+            }
+       };
+        // if there is an active user, fetch their stats
+        if (user) {
+            fetchUserStats();
+        }
+    }, [user]);
 
-    // Handle the click event to navigate back to the main menu and reset the game state
+    // func to handle the pressing of the main menu button
     const handleSubmit = (event) => {
         event.preventDefault();
         resetGameState();
         navigate(`/CS361-Spelling-Bee/`);
     };
 
-    // Handle the click event to toggle the display of additional word information
-    const handleClick = (index) => {
-        if (showInfoIndex === index) {
-            setShowInfoIndex(null); 
-        } else {
-            setShowInfoIndex(index);
-        }
-    };
-
-    // Render the game results and controls to navigate back to the main menu
     return (
         <div className="container">
-            <h1>Game Results</h1>
-            {!!user && (<h2>Hi {user.name}!</h2>)}
-            {/* Loop through the game state to display each word's result */}
-            {gameState.map((result, index) => (
-                <div className="result" key={index}>
-                    <h3>Word #{index + 1}: {result.word}</h3>
-                    <p><small>You guessed this word {result.guesses + 1 === 3 ? 'incorrectly' : 'correctly'}.</small></p>
-                    <p><small>Guesses taken: {result.guesses + 1}</small></p>
-                    <button type="button" onClick={() => handleClick(index)} aria-label={`Show more info for ${result.word}`}>Show More Info</button>
-                    {/* Conditionally render additional word information */}
-                    {showInfoIndex === index && <div>
-                        <p><small>Definition: {result.definition}</small></p>
-                        <p><small>Sentence: {result.sentence}</small></p>
-                    </div>}
-                </div>
-            ))}
-            {/* Form containing a button that navigates the user back to the main menu */}
+            {user && (<h1>{user.name}'s Game Results!</h1>)}
+            
+            {/* Display game results for each word */}
+            <div className="recent-words">
+                {gameState.map((result, index) => (
+                    <div className="word-result" key={index}>
+                        <h3>Word #{index + 1}: {result.word}</h3>
+                        {!result.correct ? (
+                            <>
+                                <p><small>You guessed this word incorrectly after {result.guesses + 1 === 1 ? '1 guess' : `${result.guesses + 1} guesses`}.</small></p>
+                                <p style={{ color: 'red' }}>X</p>
+                            </> 
+                        ) : (
+                            <>
+                                <p><small>You guessed this word correctly after {result.guesses + 1 === 1 ? '1 guess' : `${result.guesses + 1} guesses`}.</small></p>
+                                <p style={{ color: 'green' }}>✓</p>
+                            </>
+                        )}
+                        <div>
+                            <p><small>Definition: {result.definition}</small></p>
+                            <p><small>Sentence: {result.sentence}</small></p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Display user statistics and leaderboards */}
+            <div className="stats-container">
+                {userStats && (
+                    <Leaderboard/>
+                )}
+
+                {userStats && (
+                    <WordTracker 
+                        username={user.name}
+                        easyCount={userStats.numberOfWordsGuessedCorrectly.easy}
+                        mediumCount={userStats.numberOfWordsGuessedCorrectly.medium}
+                        hardCount={userStats.numberOfWordsGuessedCorrectly.hard}/>
+                )}
+            </div>
+
+            {/* Button to return to the main menu */}
             <form onSubmit={handleSubmit}>
                 <button type="submit" className="button" aria-label="Navigate to main menu">Main Menu</button>
             </form>

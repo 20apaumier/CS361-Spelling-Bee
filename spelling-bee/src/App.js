@@ -24,7 +24,7 @@ function App() {
 
   const [gameState, setGameState] = useState([]);
 
-  const updateGameState = (word, definition, sentence, part_of_speech, language_of_origin, correct, guesses) => {
+  const updateGameState = async (word, definition, sentence, part_of_speech, language_of_origin, correct, guesses) => {
       setGameState(prevState => [...prevState, {word, definition, sentence, part_of_speech, language_of_origin, correct, guesses}]);
   };
 
@@ -37,7 +37,7 @@ function App() {
         <header className="App-header">
             <Router>
                 <UserContextProvider>
-                    <NavBar />
+                    <NavBar resetGameState = {resetGameState} />
                     <Toaster position='bottom-right' toastOptions={{duration: 2000}} />
                     <Routes>
                         <Route path="/CS361-Spelling-Bee/login" element={<LoginPage />} />

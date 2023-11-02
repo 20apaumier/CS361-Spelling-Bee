@@ -12,13 +12,13 @@
     justify-content: space-around; /* evenly space the links */
 }
   
-.nav-bar a {
+.nav-bar a, .nav-bar button {
     color: #000; /* Black */
     text-decoration: none; /* remove underline */
     font-weight: bold; /* bold font for emphasis */
     transition: color 0.3s ease-in-out; /* smooth transition on hover */
 }
   
-.nav-bar a:hover {
+.nav-bar a:hover, .nav-bar button {
     color: #fff; /* White color on hover */
 }

@@ -1,11 +1,15 @@
-import { useState, React} from "react";
+import { useState, useContext, React} from "react";
 import axios from 'axios';
 import { toast } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
-import "../styles/login.css"
+import { UserContext } from "../context/userContext";
+import "../styles/LoginPage.css"
 
 export default function RegisterPage() {
     const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+
+    // used to manage user registration data
     const [data, setData] = useState({
         name: '',
         email: '',
@@ -16,13 +20,17 @@ export default function RegisterPage() {
         e.preventDefault();
         const {name, email, password} = data;
         try {
+            // post request to register user
             const { data } = await axios.post('/register', {
                 name, email, password
             })
             if (data.error) {
                 toast.error(data.error);
             } else {
+                // if the login in successful, set user context and clear data
+                setUser(data);
                 setData({})
+                // show a success message then navigate to the home page of the app
                 toast.success('Login Successful. Welcome!')
                 navigate('/CS361-Spelling-Bee/')
             }
