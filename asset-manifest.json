@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/CS361-Spelling-Bee/static/css/main.065c6174.css",
-    "main.js": "/CS361-Spelling-Bee/static/js/main.0e2d1fc8.js",
+    "main.css": "/CS361-Spelling-Bee/static/css/main.b723baf0.css",
+    "main.js": "/CS361-Spelling-Bee/static/js/main.eec1976a.js",
     "static/js/787.d0002d06.chunk.js": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js",
-    "static/media/easy_words.csv": "/CS361-Spelling-Bee/static/media/easy_words.93b973ce295a6fdf4a46.csv",
-    "static/media/medium_words.csv": "/CS361-Spelling-Bee/static/media/medium_words.45e5a48af686b794bd3b.csv",
-    "static/media/hard_words.csv": "/CS361-Spelling-Bee/static/media/hard_words.5888f251dd0a62cc397d.csv",
+    "static/media/easy_words.csv": "/CS361-Spelling-Bee/static/media/easy_words.5994358907732a26345f.csv",
+    "static/media/medium_words.csv": "/CS361-Spelling-Bee/static/media/medium_words.c73e2df042a5feabca8e.csv",
+    "static/media/hard_words.csv": "/CS361-Spelling-Bee/static/media/hard_words.7ec325bb765594324c75.csv",
     "index.html": "/CS361-Spelling-Bee/index.html",
-    "main.065c6174.css.map": "/CS361-Spelling-Bee/static/css/main.065c6174.css.map",
-    "main.0e2d1fc8.js.map": "/CS361-Spelling-Bee/static/js/main.0e2d1fc8.js.map",
+    "main.b723baf0.css.map": "/CS361-Spelling-Bee/static/css/main.b723baf0.css.map",
+    "main.eec1976a.js.map": "/CS361-Spelling-Bee/static/js/main.eec1976a.js.map",
     "787.d0002d06.chunk.js.map": "/CS361-Spelling-Bee/static/js/787.d0002d06.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.065c6174.css",
-    "static/js/main.0e2d1fc8.js"
+    "static/css/main.b723baf0.css",
+    "static/js/main.eec1976a.js"
   ]
 }
