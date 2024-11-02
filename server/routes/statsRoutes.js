@@ -7,7 +7,7 @@ const { updateWordStats, updateGameStats, getTopUsers, getUserStats } = require(
 router.use(
     cors({
         credentials: true,
-        origin: 'http://localhost:3000'
+        origin: 'cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app'
     })
 );
 

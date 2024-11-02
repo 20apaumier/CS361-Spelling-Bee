@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app",
     credentials: true
 }));
 
