@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import { UserContextProvider, UserContext } from './context/userContext';
 import ProfilePage from './pages/ProfilePage';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app';
 axios.defaults.withCredentials = true;
 
 function ProtectedRoute({ children }) {

@@ -21,7 +21,7 @@ function ProfilePage() {
         const fetchUserStats = async () => {
             // fetch user stats from the server
             try {
-                const response = await fetch(`http://localhost:8000/getUserStats/${user._id}`, {
+                const response = await fetch(`cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app/getUserStats/${user._id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {
