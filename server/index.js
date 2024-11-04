@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/",
+    origin: "https://20apaumier.github.io",
     credentials: true
 }));
 
