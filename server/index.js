@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app",
+    origin: "https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/",
     credentials: true
 }));
 
