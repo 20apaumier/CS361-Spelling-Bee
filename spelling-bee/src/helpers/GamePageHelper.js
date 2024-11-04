@@ -4,7 +4,7 @@ function delay(ms) {
 
 // Asynchronous function to update word statistics in the database
 async function updateDatabaseWithWords (user_id, difficulty, word) {
-    await fetch('cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app/updateWordStats', {
+    await fetch('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/updateWordStats', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -25,7 +25,7 @@ async function updateDatabaseWithWords (user_id, difficulty, word) {
 
 // Asynchronous function to update game statistics in the database
 async function updateDatabaseWithGames (user_id, difficulty, did_win) {
-    await fetch('cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app/updateGameStats', {
+    await fetch('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/updateGameStats', {
         method: 'POST',
         credentials: 'include',
         headers: {

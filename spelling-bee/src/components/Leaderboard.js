@@ -8,7 +8,7 @@ const Leaderboard = () => {
         // Fetch top users overall from the server
         async function fetchTopUsersOverall() {
             try {
-                const response = await fetch('http://localhost:8000/getTopUsers');
+                const response = await fetch('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/getTopUsers');
                 const topUsers = await response.json();
                 setUsers(topUsers);
             } catch (error) {

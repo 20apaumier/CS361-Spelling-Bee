@@ -21,7 +21,7 @@ function ProfilePage() {
         const fetchUserStats = async () => {
             // fetch user stats from the server
             try {
-                const response = await fetch(`cs-361-spelling-ku55cwei3-ajs-projects-178b9a17.vercel.app/getUserStats/${user._id}`, {
+                const response = await fetch(`https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/getUserStats/${user._id}`, {
                     method: 'GET',
                     credentials: 'include',
                     headers: {

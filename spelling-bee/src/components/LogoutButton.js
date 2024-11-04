@@ -13,7 +13,7 @@ function LogoutButton() {
     // function to log out the user and clear the cookies then navigate to login screen
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:8000/logout');
+            await axios.post('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/logout');
             setUser(null); // Set user to null in user context
             // Clear token cookie
             document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
