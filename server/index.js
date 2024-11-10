@@ -1,5 +1,4 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
 const cors = require('cors');
 const { mongoose } = require('mongoose');
 const app = express();
@@ -16,9 +15,9 @@ app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
     origin: "https://20apaumier.github.io/CS361-Spelling-Bee/",
+    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use('/', require('./routes/authRoutes'))

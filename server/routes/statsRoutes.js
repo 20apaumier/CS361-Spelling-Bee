@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const cors = require('cors');
 const { updateWordStats, updateGameStats, getTopUsers, getUserStats } = require('../controllers/statsController')
 
 router.post('/updateWordStats', updateWordStats)

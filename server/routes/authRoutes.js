@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const cors = require('cors');
 const { registerUser, loginUser, getProfile, logoutUser } = require('../controllers/authController')
 
 router.post('/register', registerUser)
