@@ -12,7 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import { UserContextProvider, UserContext } from './context/userContext';
 import ProfilePage from './pages/ProfilePage';
 
-axios.defaults.baseURL = 'https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 function ProtectedRoute({ children }) {

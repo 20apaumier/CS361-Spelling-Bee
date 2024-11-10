@@ -16,7 +16,7 @@ function ResultPage({ gameState, resetGameState }) {
         const fetchUserStats = async () => {
             // try to fetch user stats from server with the user's id
             try {
-               const response = await fetch(`https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/getUserStats/${user._id}`, {
+               const response = await fetch(`http://localhost:8000/getUserStats/${user._id}`, {
                    method: 'GET',
                    credentials: 'include',
                    headers: {

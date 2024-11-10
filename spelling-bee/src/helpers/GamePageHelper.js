@@ -4,7 +4,7 @@ function delay(ms) {
 
 // Asynchronous function to update word statistics in the database
 async function updateDatabaseWithWords (user_id, difficulty, word) {
-    await fetch('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/updateWordStats', {
+    await fetch('http://localhost:8000/updateWordStats', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -25,7 +25,7 @@ async function updateDatabaseWithWords (user_id, difficulty, word) {
 
 // Asynchronous function to update game statistics in the database
 async function updateDatabaseWithGames (user_id, difficulty, did_win) {
-    await fetch('https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/updateGameStats', {
+    await fetch('http://localhost:8000/updateGameStats', {
         method: 'POST',
         credentials: 'include',
         headers: {

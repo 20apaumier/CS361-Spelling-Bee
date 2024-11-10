@@ -4,12 +4,12 @@ const cors = require('cors');
 const { updateWordStats, updateGameStats, getTopUsers, getUserStats } = require('../controllers/statsController')
 
 // middleware
-router.use(
-    cors({
-        credentials: true,
-        origin: 'https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/'
-    })
-);
+// router.use(
+//     cors({
+//         credentials: true,
+//         origin: 'https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/'
+//     })
+// );
 
 router.post('/updateWordStats', updateWordStats)
 router.post('/updateGameStats', updateGameStats)
