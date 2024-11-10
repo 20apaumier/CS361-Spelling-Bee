@@ -15,12 +15,25 @@ app.use(express.json())
 app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/",
-    credentials: true
+    origin: "20apaumier.github.io/CS361-Spelling-Bee/",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use('/', require('./routes/authRoutes'))
 app.use('/', require('./routes/statsRoutes'))
 
-const port = 8000;
+app.get("/*", function (req, res) {
+    res.sendFile(
+        path.join(__dirname, "../spelling-bee/build/index.html"),
+        function (err) {
+            if (err) {
+                res.status(500).send(err);
+            }
+        }
+    );
+});
+
+const port = process.env.PORT || 8000;
 app.listen(port, () => console.log(`Server is running on port: ${port}`));

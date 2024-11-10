@@ -1,0 +1,23 @@
+{
+  "name": "cs361-spelling-bee",
+  "version": "1.0.0",
+  "description": "This full-stack MERN (MongoDB, Express.js, React, Node.js) application replicates a spelling bee game. The user can play as many times as they want with continuously randomized words. They will be able to compare their results to other users playing the game. They will be required to login with an email to use this app, we will not send the user any emails, it is stricly for logging in purposes. Have fun and happy spelling!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.2",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
