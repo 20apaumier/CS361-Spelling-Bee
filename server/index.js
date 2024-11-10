@@ -16,6 +16,8 @@ app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
     origin: "https://20apaumier.github.io",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
 
