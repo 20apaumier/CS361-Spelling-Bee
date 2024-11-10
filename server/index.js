@@ -15,12 +15,12 @@ app.use(express.json())
 app.use(cookierParser())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "https://spelling-bee-aj-2657ad9a4e22.herokuapp.com/",
+    origin: "https://20apaumier.github.io",
     credentials: true
 }));
 
 app.use('/', require('./routes/authRoutes'))
 app.use('/', require('./routes/statsRoutes'))
 
-const port = 8000;
+const port = process.env.port || 8000;
 app.listen(port, () => console.log(`Server is running on port: ${port}`));
